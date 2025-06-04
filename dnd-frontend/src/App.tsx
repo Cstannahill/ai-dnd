@@ -10,6 +10,7 @@ import { LandingPage } from "./pages/LandingPage";
 import { GameLobby } from "./pages/GameLobby";
 import { GameRoom } from "./pages/GameRoom";
 import { CharacterLibrary } from "./pages/CharacterLibrary";
+import { Campaigns } from "./pages/Campaigns";
 import { CharacterCreate } from "./pages/CharacterCreate";
 import { CharacterEdit } from "./pages/CharacterEdit";
 import { CharacterView } from "./pages/CharacterView";
@@ -36,6 +37,7 @@ function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/lobby/:roomCode?" element={<GameLobby />} />
             <Route path="/game/:roomCode" element={<GameRoom />} />
+            <Route path="/campaigns" element={<Campaigns />} />
             <Route path="/characters" element={<CharacterLibrary />} />
             <Route path="/characters/create" element={<CharacterCreate />} />
             <Route

@@ -23,11 +23,12 @@ import {
   SelectValue,
 } from "../components/ui/select";
 import { Badge } from "../components/ui/badge";
-import { Users, Settings, Play, Copy, CheckCircle, Brain } from "lucide-react";
+import { Users, Settings, Play, Copy, CheckCircle, Brain, Info } from "lucide-react";
 import { useSocket } from "../hooks/useSocket";
 import { CharacterSheet } from "../components/character/CharacterSheet";
 import { AIModelSelector } from "../components/aicomponent/AIModelSelector";
 import { PlayerList } from "../components/game/PlayerList";
+import { saveCampaign } from "../lib/campaignStorage";
 
 interface Player {
   id: string;
@@ -111,6 +112,12 @@ export function GameLobby() {
   const allPlayersReady =
     room?.players.every((p) => p.character?.ready) && room.players.length > 0;
 
+  useEffect(() => {
+    if (joined && room) {
+      saveCampaign({ code: room.code, name: room.name });
+    }
+  }, [joined, room]);
+
   if (!joined) {
     return (
       <div className="min-h-screen flex items-center justify-center p-4">
@@ -187,16 +194,25 @@ export function GameLobby() {
             </div>
           </div>
 
-          {isHost && (
+          <div className="flex gap-2 items-center">
             <Button
-              onClick={handleStartGame}
-              disabled={!allPlayersReady || !connected}
-              className="bg-green-600 hover:bg-green-700"
+              variant="outline"
+              onClick={() => navigate("/campaigns")}
+              className="border-gray-600 text-gray-300 hover:bg-gray-700"
             >
-              <Play className="w-4 h-4 mr-2" />
-              Start Adventure
+              Campaigns
             </Button>
-          )}
+            {isHost && (
+              <Button
+                onClick={handleStartGame}
+                disabled={!allPlayersReady || !connected}
+                className="bg-green-600 hover:bg-green-700"
+              >
+                <Play className="w-4 h-4 mr-2" />
+                Start Adventure
+              </Button>
+            )}
+          </div>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-6">
@@ -356,6 +372,19 @@ export function GameLobby() {
                     </Badge>
                   </div>
                 </div>
+              </CardContent>
+            </Card>
+            <Card className="bg-white/10 backdrop-blur border-purple-500/20 mt-6">
+              <CardHeader>
+                <CardTitle className="text-white flex items-center">
+                  <Info className="w-5 h-5 mr-2" />
+                  Campaign Details
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-gray-300 space-y-1">
+                <div>AI Model: <span className="text-white">{room?.aiModel}</span></div>
+                <div>Host ID: <span className="text-white">{room?.host}</span></div>
+                <div>Players: <span className="text-white">{room?.players.length}</span></div>
               </CardContent>
             </Card>
           </div>

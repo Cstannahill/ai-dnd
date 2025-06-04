@@ -19,6 +19,7 @@ import { Brain, Sparkles, Github, User, Users } from "lucide-react";
 // import { createRoom, joinRoom } from "../services/api";
 import { createRoom, joinRoom } from "../services/api-mock";
 import ctanDndMain from "/ctan-dnd-main.png?url";
+import { saveCampaign } from "../lib/campaignStorage";
 
 export function LandingPage() {
   const navigate = useNavigate();
@@ -32,6 +33,7 @@ export function LandingPage() {
     setLoading(true);
     try {
       const room = await createRoom(roomName);
+      saveCampaign({ code: room.code, name: room.name });
       navigate(`/lobby/${room.code}`);
     } catch (error) {
       console.error("Failed to create room:", error);
@@ -45,7 +47,8 @@ export function LandingPage() {
 
     setLoading(true);
     try {
-      await joinRoom(joinCode);
+      const room = await joinRoom(joinCode);
+      saveCampaign({ code: joinCode, name: room.name });
       navigate(`/lobby/${joinCode}`);
     } catch (error) {
       console.error("Failed to join room:", error);
