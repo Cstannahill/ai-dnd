@@ -64,3 +64,50 @@ const testRoom = {
 MOCK_ROOMS.set("TEST01", testRoom);
 
 console.log("Mock API initialized. Test room code: TEST01");
+
+// --- Fine-tuning mock ---
+export interface FineTuningRequest {
+  campaignStyle: string;
+  worldDescription: string;
+  keyNPCs: Array<{
+    name: string;
+    description: string;
+    personality: string;
+  }>;
+  campaignThemes: string[];
+  customPrompts: string[];
+  model?: string;
+  temperature?: number;
+  maxTokens?: number;
+  trainingData?: string;
+}
+
+const MOCK_FINE_TUNES = new Map<string, {
+  id: string;
+  name: string;
+  description: string;
+  config: FineTuningRequest;
+}>();
+
+export async function createFineTunedDM(request: FineTuningRequest) {
+  await new Promise((resolve) => setTimeout(resolve, 500));
+  const id = `ft_${Math.random().toString(36).substring(2, 8)}`;
+  const model = {
+    id,
+    name: request.campaignStyle || "Custom DM",
+    description: request.worldDescription.slice(0, 60),
+    config: request,
+  };
+  MOCK_FINE_TUNES.set(id, model);
+  return { id: model.id, name: model.name, description: model.description };
+}
+
+export async function testFineTunedDM(
+  request: FineTuningRequest,
+  message: string
+) {
+  await new Promise((resolve) => setTimeout(resolve, 300));
+  return {
+    response: `(${request.campaignStyle}) AI DM: ${message}`,
+  };
+}

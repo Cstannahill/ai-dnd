@@ -27,6 +27,7 @@ import { Users, Settings, Play, Copy, CheckCircle, Brain } from "lucide-react";
 import { useSocket } from "../hooks/useSocket";
 import { CharacterSheet } from "../components/character/CharacterSheet";
 import { AIModelSelector } from "../components/aicomponent/AIModelSelector";
+import { PlayerList } from "../components/game/PlayerList";
 
 interface Player {
   id: string;

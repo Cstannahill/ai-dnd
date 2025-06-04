@@ -173,6 +173,10 @@ export interface FineTuningRequest {
   }>;
   campaignThemes: string[];
   customPrompts: string[];
+  model?: string;
+  temperature?: number;
+  maxTokens?: number;
+  trainingData?: string;
 }
 
 export async function createFineTunedDM(
@@ -181,6 +185,16 @@ export async function createFineTunedDM(
   return apiRequest("/ai/fine-tune", {
     method: "POST",
     body: JSON.stringify(request),
+  });
+}
+
+export async function testFineTunedDM(
+  request: FineTuningRequest,
+  message: string
+): Promise<{ response: string }> {
+  return apiRequest("/ai/fine-tune/test", {
+    method: "POST",
+    body: JSON.stringify({ config: request, message }),
   });
 }
 
