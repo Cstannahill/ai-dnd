@@ -7,35 +7,35 @@
 ## 🔧 Core Game Components
 
 ### Socket & API
-- [ ] **useSocket** - Hook for WebSocket connection management
-- [ ] **api.ts** - API service functions (createRoom, joinRoom, etc.)
+- [x] **useSocket** - Hook for WebSocket connection management
+- [x] **api.ts** - API service functions (createRoom, joinRoom, etc.)
 
-### Character Management  
-- [ ] **CharacterPanel** - Displays character info in sidebar during game
-- [ ] **AIModelSelector** - Dropdown for selecting AI model (GPT-4, Claude, etc.)
+### Character Management
+- [x] **CharacterPanel** - Displays character info in sidebar during game
+- [x] **AIModelSelector** - Dropdown for selecting AI model (GPT-4, Claude, etc.)
 
 ### Game Communication
-- [ ] **ChatMessage** - Individual message component for game chat
-- [ ] **DiceRoller** - Dice rolling interface with common D&D dice
-- [ ] **GameMap** - Battle map/grid component for tactical combat
+- [x] **ChatMessage** - Individual message component for game chat
+- [x] **DiceRoller** - Dice rolling interface with common D&D dice
+- [x] **GameMap** - Battle map/grid component for tactical combat
 
 ## 🎮 Game Flow Components
 
 ### Room Management
-- [ ] **PlayerList** - Display of players in lobby/game
+- [x] **PlayerList** - Display of players in lobby/game
 - [ ] **RoomSettings** - Game configuration panel
 - [ ] **JoinRoomForm** - Form for joining existing rooms
 
 ### Gameplay Features
-- [ ] **CombatTracker** - Initiative order and turn management
+- [x] **CombatTracker** - Initiative order and turn management
 - [ ] **SpellList** - Searchable spell reference
 - [ ] **InventoryPanel** - Character equipment management
 - [ ] **SkillCheck** - Interface for ability checks and saves
 
 ## 🤖 AI & Customization
-- [ ] **FineTuningDemo** - AI DM customization interface
-- [ ] **PromptEditor** - Text editor for AI prompts
-- [ ] **AIPersonalitySelector** - Pre-built DM personality options
+- [x] **FineTuningDemo** - AI DM customization interface
+- [x] **PromptEditor** - Text editor for AI prompts
+- [x] **AIPersonalitySelector** - Pre-built DM personality options
 
 ## 🎲 D&D Reference Components
 - [ ] **ConditionsReference** - D&D conditions lookup

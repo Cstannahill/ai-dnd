@@ -136,12 +136,12 @@ export function CharacterEdit() {
 
       try {
         // TODO: Replace with actual API call
-        const characters = JSON.parse(
+        const characters: Record<string, unknown>[] = JSON.parse(
           localStorage.getItem("dnd-characters") || "[]"
         );
         const foundCharacter = characters.find(
-          (c: any) => c.id === characterId
-        );
+          (c) => (c as { id: string }).id === characterId
+        ) as Character | undefined;
 
         if (!foundCharacter) {
           alert("Character not found");
@@ -215,11 +215,11 @@ export function CharacterEdit() {
     setSaving(true);
     try {
       // TODO: Replace with actual API call
-      const characters = JSON.parse(
+      const characters: Record<string, unknown>[] = JSON.parse(
         localStorage.getItem("dnd-characters") || "[]"
       );
-      const updatedCharacters = characters.map((c: any) =>
-        c.id === characterId
+      const updatedCharacters = characters.map((c) =>
+        (c as { id: string }).id === characterId
           ? { ...character, updatedAt: new Date().toISOString() }
           : c
       );
@@ -246,11 +246,11 @@ export function CharacterEdit() {
 
     try {
       // TODO: Replace with actual API call
-      const characters = JSON.parse(
+      const characters: Record<string, unknown>[] = JSON.parse(
         localStorage.getItem("dnd-characters") || "[]"
       );
       const filteredCharacters = characters.filter(
-        (c: any) => c.id !== characterId
+        (c) => (c as { id: string }).id !== characterId
       );
       localStorage.setItem(
         "dnd-characters",

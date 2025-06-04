@@ -1,5 +1,5 @@
 // Mock API service for testing navigation without backend
-const MOCK_ROOMS = new Map<string, any>();
+const MOCK_ROOMS = new Map<string, Record<string, unknown>>();
 
 // Generate a random room code
 function generateRoomCode(): string {

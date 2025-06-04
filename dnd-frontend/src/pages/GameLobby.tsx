@@ -327,54 +327,19 @@ export function GameLobby() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-3">
-                  {room?.players.map((player) => (
-                    <div
-                      key={player.id}
-                      className="flex items-center justify-between p-3 rounded-lg bg-white/5"
-                    >
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <span className="font-medium text-white">
-                            {player.name}
-                          </span>
-                          {player.id === room.host && (
-                            <Badge variant="outline" className="text-xs">
-                              Host
-                            </Badge>
-                          )}
-                        </div>
-                        {player.character && (
-                          <div className="text-sm text-gray-400">
-                            {player.character.name} • Level{" "}
-                            {player.character.level} {player.character.class}
-                          </div>
-                        )}
-                      </div>
-                      <div className="flex items-center gap-2">
-                        {player.character?.ready ? (
-                          <Badge className="bg-green-900/30 text-green-300">
-                            Ready
-                          </Badge>
-                        ) : (
-                          <Badge
-                            variant="secondary"
-                            className="bg-yellow-900/30 text-yellow-300"
-                          >
-                            Setup
-                          </Badge>
-                        )}
-                      </div>
-                    </div>
-                  ))}
+                <PlayerList
+                  players={(room?.players || []).map((p) => ({
+                    ...p,
+                    isHost: p.id === room?.host,
+                  }))}
+                />
 
-                  {!room?.players.length && (
-                    <div className="text-center text-gray-400 py-8">
-                      <Users className="w-12 h-12 mx-auto mb-2 opacity-50" />
-                      <p>Waiting for players to join...</p>
-                    </div>
-                  )}
-                </div>
+                {!room?.players.length && (
+                  <div className="text-center text-gray-400 py-8">
+                    <Users className="w-12 h-12 mx-auto mb-2 opacity-50" />
+                    <p>Waiting for players to join...</p>
+                  </div>
+                )}
 
                 {/* AI DM Status */}
                 <div className="mt-6 pt-4 border-t border-gray-600">

@@ -13,7 +13,7 @@ import { CharacterLibrary } from "./pages/CharacterLibrary";
 import { CharacterCreate } from "./pages/CharacterCreate";
 import { CharacterEdit } from "./pages/CharacterEdit";
 import { CharacterView } from "./pages/CharacterView";
-// import { FineTuningDemo } from "./pages/FineTuningDemo";
+import { FineTuningDemo } from "./pages/FineTuningDemo";
 import "./App.css";
 import { Navbar } from "./components/ui/navbar";
 
@@ -46,7 +46,7 @@ function App() {
               path="/characters/view/:characterId"
               element={<CharacterView />}
             />
-            {/*  <Route path="/fine-tune" element={<FineTuningDemo />} /> */}
+            <Route path="/fine-tune" element={<FineTuningDemo />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </div>
