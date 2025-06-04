@@ -22,6 +22,7 @@ import { CharacterPanel } from "../components/character/CharacterPanel";
 import { DiceRoller } from "../components/game/DiceRoller";
 import { GameMap } from "../components/game/GameMap";
 import { ChatMessage } from "../components/chat/ChatMessage";
+import { CombatTracker } from "../components/game/CombatTracker";
 
 interface GameMessage {
   id: string;
@@ -358,25 +359,7 @@ export function GameRoom() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="space-y-2">
-                      {gameState.turn?.initiative.map((participant) => (
-                        <div
-                          key={participant.id}
-                          className={`flex items-center justify-between p-2 rounded ${
-                            participant.id === gameState.turn?.currentPlayer
-                              ? "bg-red-500/20 border border-red-500/50"
-                              : "bg-white/5"
-                          }`}
-                        >
-                          <span className="text-white text-sm font-medium">
-                            {participant.name}
-                          </span>
-                          <Badge variant="outline" className="text-xs">
-                            {participant.initiative}
-                          </Badge>
-                        </div>
-                      ))}
-                    </div>
+                    <CombatTracker turn={gameState.turn} />
                   </CardContent>
                 </Card>
               )}

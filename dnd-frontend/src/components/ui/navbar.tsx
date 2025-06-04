@@ -1,15 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  User,
-  Settings,
-  Home,
-  Users,
-  BookOpen,
-  ChevronDown,
-  Moon,
-  Sun,
-} from "lucide-react";
+import { User, Settings, ChevronDown, Moon, Sun } from "lucide-react";
 
 export function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);

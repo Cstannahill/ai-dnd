@@ -67,7 +67,7 @@ export function useSocket(options: SocketOptions = {}) {
     }
   };
 
-  const emit = (event: string, data?: any) => {
+  const emit = (event: string, data?: unknown) => {
     if (socketRef.current && connected) {
       socketRef.current.emit(event, data);
     } else {
