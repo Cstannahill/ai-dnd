@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../components/ui/card";
 import { Button } from "../components/ui/button";
-import { loadCampaigns, CampaignRecord } from "../lib/campaignStorage";
+import { loadCampaigns, type CampaignRecord } from "../lib/campaignStorage";
 import { getRoomInfo } from "../services/api-mock";
 
 interface CampaignInfo extends CampaignRecord {

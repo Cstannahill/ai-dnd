@@ -70,6 +70,7 @@ export function FineTuningDemo() {
   const [saving, setSaving] = useState(false);
   const [currentMessage, setCurrentMessage] = useState("");
   const [messages, setMessages] = useState<SimpleMessage[]>([]);
+  const [sharePublicly, setSharePublicly] = useState(false);
 
   const buildRequest = (): FineTuningRequest => ({
     campaignStyle: personality,
@@ -90,6 +91,7 @@ export function FineTuningDemo() {
     trainingSteps,
     learningRate,
     quantization,
+    sharePublicly,
   });
 
   const handleSave = async () => {
@@ -247,6 +249,18 @@ export function FineTuningDemo() {
                   <p className="text-xs text-gray-400">
                     Provide short samples that capture your world&apos;s tone.
                   </p>
+                </div>
+                <div className="flex items-center gap-2 mt-2">
+                  <input
+                    id="sharePublicly"
+                    type="checkbox"
+                    checked={sharePublicly}
+                    onChange={(e) => setSharePublicly(e.target.checked)}
+                    className="size-4 accent-purple-600"
+                  />
+                  <label htmlFor="sharePublicly" className="text-sm text-muted-foreground">
+                    Share publicly in DM library
+                  </label>
                 </div>
                 <Button onClick={handleSave} disabled={saving} className="mt-4 bg-primary hover:bg-primary/80">
                   <Save className="w-4 h-4 mr-2" /> {saving ? "Saving..." : "Save"}
