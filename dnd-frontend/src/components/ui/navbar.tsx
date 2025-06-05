@@ -43,6 +43,9 @@ export function Navbar() {
           <Link to="/characters" className="hover:text-primary">
             Characters
           </Link>
+          <Link to="/dm-library" className="hover:text-primary">
+            DM Library
+          </Link>
           <Link to="/about" className="hover:text-primary">
             About
           </Link>

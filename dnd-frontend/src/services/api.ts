@@ -180,6 +180,7 @@ export interface FineTuningRequest {
   trainingSteps?: number;
   learningRate?: number;
   quantization?: string;
+  sharePublicly?: boolean;
 }
 
 export async function createFineTunedDM(
@@ -199,6 +200,12 @@ export async function testFineTunedDM(
     method: "POST",
     body: JSON.stringify({ config: request, message }),
   });
+}
+
+export async function getPublicFineTunedDMs(): Promise<
+  Array<{ id: string; name: string; description: string }>
+> {
+  return apiRequest("/ai/fine-tune/public");
 }
 
 export async function getAvailableModels(): Promise<
