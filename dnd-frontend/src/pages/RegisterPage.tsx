@@ -28,7 +28,7 @@ export function RegisterPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-background text-foreground">
-      <Card className="w-full max-w-md border border-border bg-card shadow-lg">
+      <Card className="w-full border border-border bg-card shadow-lg">
         <CardHeader className="text-center">
           <img src="/ctan-dnd-main.png" alt="logo" className="w-12 h-12 mx-auto mb-2" />
           <CardTitle className="text-3xl text-primary">Create Account</CardTitle>

@@ -172,7 +172,7 @@ export function FineTuningDemo() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-4">
-      <div className="max-w-3xl mx-auto space-y-6">
+      <div className="w-full mx-auto space-y-6">
         <div className="flex items-center justify-between">
           <Button variant="ghost" onClick={() => navigate(-1)} className="text-gray-300 hover:text-white">
             <ArrowLeft className="w-4 h-4 mr-2" /> Back
