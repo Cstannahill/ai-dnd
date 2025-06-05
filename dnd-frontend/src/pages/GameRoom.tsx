@@ -18,6 +18,7 @@ import { ScrollArea } from "../components/ui/scroll-area";
 import { Badge } from "../components/ui/badge";
 import { Send, Dice6, Users, Map, BookOpen, Brain, Sword } from "lucide-react";
 import { useSocket } from "../hooks/useSocket";
+import { useTurnNotifications } from "../hooks/useTurnNotifications";
 import { CharacterPanel } from "../components/character/CharacterPanel";
 import { DiceRoller } from "../components/game/DiceRoller";
 import { GameMap } from "../components/game/GameMap";
@@ -64,6 +65,15 @@ export function GameRoom() {
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { socket } = useSocket();
+  const player = (() => {
+    if (typeof window === "undefined") return null;
+    try {
+      return JSON.parse(localStorage.getItem("dnd-current-player") || "null");
+    } catch {
+      return null;
+    }
+  })();
+  useTurnNotifications(player?.id ?? null, socket);
 
   useEffect(() => {
     if (!socket || !roomCode) return;
