@@ -59,7 +59,7 @@ export function LandingPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-background text-foreground">
-      <div className="max-w-4xl mx-auto shadow-lg rounded-lg border border-border bg-card">
+      <div className="w-full mx-auto shadow-lg rounded-lg border border-border bg-card">
         {/* Hero Section */}
         <div className="text-center mb-12 mt-2">
           <div className="flex items-center justify-center mb-6">

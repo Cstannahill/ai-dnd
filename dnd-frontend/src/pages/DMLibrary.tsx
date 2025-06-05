@@ -26,7 +26,7 @@ export function DMLibrary() {
 
   return (
     <div className="min-h-screen p-4">
-      <div className="max-w-3xl mx-auto space-y-6">
+      <div className="w-full mx-auto space-y-6">
         <h1 className="text-3xl font-bold text-white">Community DM Library</h1>
         {loading ? (
           <p className="text-gray-400">Loading...</p>

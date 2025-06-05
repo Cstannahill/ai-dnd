@@ -129,7 +129,7 @@ export function GameLobby() {
   if (!joined) {
     return (
       <div className="min-h-screen flex items-center justify-center p-4">
-        <Card className="w-full max-w-md bg-white/10 backdrop-blur border-purple-500/20">
+        <Card className="w-full bg-white/10 backdrop-blur border-purple-500/20">
           <CardHeader>
             <CardTitle className="text-2xl text-center text-white">
               Join Game
@@ -168,7 +168,7 @@ export function GameLobby() {
 
   return (
     <div className="min-h-screen p-4">
-      <div className="max-w-6xl mx-auto">
+      <div className="w-full mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <div>
