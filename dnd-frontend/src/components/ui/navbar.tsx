@@ -46,6 +46,9 @@ export function Navbar() {
           <Link to="/about" className="hover:text-primary">
             About
           </Link>
+          <Link to="/login" className="hover:text-primary">
+            Login
+          </Link>
         </div>
 
         {/* Theme Toggle */}
