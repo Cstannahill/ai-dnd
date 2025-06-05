@@ -177,6 +177,9 @@ export interface FineTuningRequest {
   temperature?: number;
   maxTokens?: number;
   trainingData?: string;
+  trainingSteps?: number;
+  learningRate?: number;
+  quantization?: string;
 }
 
 export async function createFineTunedDM(

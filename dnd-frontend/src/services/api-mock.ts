@@ -80,6 +80,9 @@ export interface FineTuningRequest {
   temperature?: number;
   maxTokens?: number;
   trainingData?: string;
+  trainingSteps?: number;
+  learningRate?: number;
+  quantization?: string;
 }
 
 const MOCK_FINE_TUNES = new Map<string, {
