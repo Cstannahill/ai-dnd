@@ -9,6 +9,13 @@ import {
 } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../components/ui/select";
 import { Textarea } from "../components/ui/textarea";
 import { ScrollArea } from "../components/ui/scroll-area";
 import { Progress } from "../components/ui/progress";
@@ -50,6 +57,9 @@ export function FineTuningDemo() {
   const [activeTab, setActiveTab] = useState("basic");
   const [datasetFile, setDatasetFile] = useState<File | null>(null);
   const [epochs, setEpochs] = useState(3);
+  const [trainingSteps, setTrainingSteps] = useState(1000);
+  const [learningRate, setLearningRate] = useState(0.00005);
+  const [quantization, setQuantization] = useState("none");
   const [trainingProgress, setTrainingProgress] = useState(0);
   const [qualityLoss, setQualityLoss] = useState<number | null>(null);
   const [analysis, setAnalysis] = useState<string | null>(null);
@@ -77,6 +87,9 @@ export function FineTuningDemo() {
     temperature,
     maxTokens,
     trainingData,
+    trainingSteps,
+    learningRate,
+    quantization,
   });
 
   const handleSave = async () => {
@@ -291,6 +304,52 @@ export function FineTuningDemo() {
                     onChange={(e) => setEpochs(parseInt(e.target.value))}
                     className="w-24 bg-card border border-border text-primary"
                   />
+                  <p className="text-xs text-gray-400">
+                    More epochs can improve quality but may overfit.
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-muted-foreground mb-1">Training Steps</label>
+                  <Input
+                    type="number"
+                    min="1"
+                    value={trainingSteps}
+                    onChange={(e) => setTrainingSteps(parseInt(e.target.value))}
+                    className="w-24 bg-card border border-border text-primary"
+                  />
+                  <p className="text-xs text-gray-400">
+                    Higher values take longer but yield better results.
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-muted-foreground mb-1">Learning Rate</label>
+                  <Input
+                    type="number"
+                    step="0.00001"
+                    min="0"
+                    value={learningRate}
+                    onChange={(e) => setLearningRate(parseFloat(e.target.value))}
+                    className="w-24 bg-card border border-border text-primary"
+                  />
+                  <p className="text-xs text-gray-400">
+                    Lower values train steadily; high values risk divergence.
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-muted-foreground mb-1">Quantization</label>
+                  <Select value={quantization} onValueChange={setQuantization}>
+                    <SelectTrigger className="bg-card border border-border text-primary w-32">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="none">None</SelectItem>
+                      <SelectItem value="int8">Int8</SelectItem>
+                      <SelectItem value="int4">Int4</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <p className="text-xs text-gray-400">
+                    Reduces model size and speeds inference but may lower quality.
+                  </p>
                 </div>
                 <Button onClick={startTraining} disabled={training || !datasetFile} className="bg-primary hover:bg-primary/80">
                   <Brain className="w-4 h-4 mr-2" />
