@@ -72,6 +72,14 @@ export function GameLobby() {
 
     const handlePlayerJoined = (player: Player) => {
       setCurrentPlayer(player);
+      try {
+        localStorage.setItem(
+          "dnd-current-player",
+          JSON.stringify(player)
+        );
+      } catch {
+        // ignore storage errors
+      }
       setJoined(true);
     };
 
